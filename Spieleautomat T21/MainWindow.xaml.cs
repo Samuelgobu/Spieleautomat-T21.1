@@ -30,11 +30,13 @@ namespace Spieleautomat_T21
             ZahlGenerieren(lb1);
             ZahlGenerieren(lb2);
             ZahlGenerieren(lb3);
+            //MessageBox.Show("Der Knopf wurde geklickt");
             Gewinn(gewinn, lb1, lb2, lb3);
 
         }
         static Random rng = new Random();
         static string[] Bilder = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+        static int[] Value = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
         private static void ZahlGenerieren(Label lb)
         {
             int index = rng.Next(Bilder.Length); //Zufallszahl von 0 bis 12
@@ -53,26 +55,26 @@ namespace Spieleautomat_T21
                 string x = anzeige2.Content.ToString();
                 if (anzeige3.Content.ToString() == x)
                 {
-                    gewinn.Content = "3 sind gleich";
+                    gewinn.Content = Wert(anzeige1)*100;
                 }
 
                 else
                 {
-                    gewinn.Content = "2 sind gleich";
+                    gewinn.Content = Wert(anzeige1) * 10;
                 }
             }
             else if (anzeige1.Content == anzeige3.Content)
             {
-                gewinn.Content = "2 sind gleich";
+                gewinn.Content = Wert(anzeige1) * 10;
             }
             else if (anzeige2.Content == anzeige3.Content)
             {
-                gewinn.Content = "2 sind gleich";
+                gewinn.Content = Wert(anzeige2) * 10;
             }
             
             else
             {
-                gewinn.Content = "Keine ist gleich";
+                gewinn.Content = 0;
             }
           
         }
@@ -88,7 +90,21 @@ namespace Spieleautomat_T21
         static private int Wert(Label anzeige)
         {
             string content = anzeige.Content.ToString();
-
+            if (Bilder.Contains(content))
+            {
+                int index = Array.IndexOf(Bilder, content);
+                //Bilder[index] hat den Wert Value[index] 
+                return Value[index];
+            }
+            else 
+            // In diesem Programm sollte else einmals erreicht werden.
+            // Wenn das Symbol nicht im Array Bilder ist, muss eine Fehler-
+            // meldung geben und wir geben einen sinnlosen Wert zurück (z.B.: -1 oder 0)
+            {
+                MessageBox.Show("Fehler: Das Symbol " + content + " existiert nicht!");
+                return 0;
+            }
+            
         }
     }
 }
