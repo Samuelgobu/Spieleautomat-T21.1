@@ -106,5 +106,33 @@ namespace Spieleautomat_T21
             }
             
         }
+        private static int Wert2(Label anzeige)
+            // Die Methode berechnet Werte ohne Arrays zu nutzen.
+        {
+            string symbol = anzeige.Content.ToString();
+            switch (symbol)
+            {
+                case "2": return 2;
+                case "3": return 3;
+                case "4": return 4;
+                case "5": return 5;
+                case "6": return 6;
+                case "7": return 7;
+                case "8": return 8;
+                case "9": return 9;
+                case "10": return 10;
+                case "J": return 10;
+                case "Q": return 10;
+                case "K": return 10;
+                case "A": return 11;
+                default: MessageBox.Show("Fehler! Falsches Symbol."); return 0;
+            }
+        }
+
+        private void btn_einzahlen_Click(object sender, RoutedEventArgs e)
+        {
+            //Wenn geklickt wird, soll die Border unischtbar werden.
+            border_einzahlen.Visibility = Visibility.Hidden;
+        }
     }
 }
