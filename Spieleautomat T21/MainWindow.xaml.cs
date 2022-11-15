@@ -134,5 +134,10 @@ namespace Spieleautomat_T21
             //Wenn geklickt wird, soll die Border unischtbar werden.
             border_einzahlen.Visibility = Visibility.Hidden;
         }
+
+        private void input_einzahlen_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
