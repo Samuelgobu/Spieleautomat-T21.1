@@ -33,10 +33,19 @@
                         
             <StackPanel Margin="30,30,30,9">
                 <Label x:Name="einzahlen_box_wort" Content="Einzahlen" FontSize="20" HorizontalContentAlignment="Center" HorizontalAlignment="Center" />
-                <TextBox x:Name ="input_einzahlen" Text="" FontSize="20" HorizontalAlignment="Stretch" TextChanged="input_einzahlen_TextChanged"/>
+                <TextBox x:Name ="input_einzahlen"  Text="" FontSize="20" HorizontalAlignment="Stretch" TextChanged="input_einzahlen_TextChanged"/>
                 <Button Name="btn_einzahlen" Content="Einzahlen" FontSize="15" HorizontalContentAlignment="Center" Click="btn_einzahlen_Click" />
             </StackPanel>
             
+        </Border>
+        <Border x:Name="border_balance" Margin="30" Visibility ="Hidden" BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="1">
+
+            <StackPanel Margin="30,30,30,9">
+                <Label Content="Balance" FontSize="20" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" />
+                <Label x:Name="balance" Content="" FontSize="20" HorizontalAlignment="Center"/>
+
+            </StackPanel>
+
         </Border>
     </Grid>
 </Window>

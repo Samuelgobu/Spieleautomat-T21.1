@@ -23,15 +23,42 @@ namespace Spieleautomat_T21
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void btn_spielen_Click(object sender, RoutedEventArgs e)
         {
-            ZahlGenerieren(lb1);
-            ZahlGenerieren(lb2);
-            ZahlGenerieren(lb3);
-            //MessageBox.Show("Der Knopf wurde geklickt");
-            Gewinn(gewinn, lb1, lb2, lb3);
+            int.TryParse(input_einzahlen.Text.ToString(), out int x);
+            if (x > 0)
+            {
+                if (border_balance.Visibility == Visibility.Visible)
+                {
+                    ZahlGenerieren(lb1);
+                    ZahlGenerieren(lb2);
+                    ZahlGenerieren(lb3);
+                    //MessageBox.Show("Der Knopf wurde geklickt");
+                    Gewinn(gewinn, lb1, lb2, lb3);
+                    //int b = Convert.ToInt32(gewinn.Content);
+                    //if (b >= 0)
+                    //{
+                    //    balance.Content = balance.Content + b;
+                    //}
+                    //else
+                    //{
+                    //    balance.Content = balance.Content - 23;
+                    //}
+                }
+                else
+                {
+                    MessageBox.Show("Druck einzahlen button bitte");
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Du hast kein Geld, bitte zähl mehr Geld ein (?)");
+            }
+            
 
         }
         static Random rng = new Random();
@@ -133,11 +160,28 @@ namespace Spieleautomat_T21
         {
             //Wenn geklickt wird, soll die Border unischtbar werden.
             border_einzahlen.Visibility = Visibility.Hidden;
+            border_balance.Visibility = Visibility.Visible;
+            balance.Content = setBalance();
         }
 
         private void input_einzahlen_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private int setBalance()
+        {
+            int.TryParse(input_einzahlen.Text, out int funds);
+            int balance = funds;
+            return balance;
+        }
+        private void newBalance()
+        {
+            int einsatz = 30;
+            int.TryParse(balance.Content.ToString(), out int bal);
+            bal -= einsatz;
+            bal += Convert.ToInt32(gewinn.Content.ToString());
+            balance.Content = bal;
         }
     }
 }
